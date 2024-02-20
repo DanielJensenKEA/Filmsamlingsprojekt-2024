@@ -10,8 +10,7 @@ public class MovieCollection {
         filmSamling[count++] = new Movie(title, director, yearCreated, isInColor, lengthInMinutes, genre);
     }
 
-
-
-
-
+    public Movie[] getFilmSamling() {
+        return filmSamling;
+    }
 }
