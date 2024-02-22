@@ -23,10 +23,13 @@ public class MovieCollection {
     }
     public void searchMovie(String searchTerm) {
         for(int i=0; i < movieList.size(); i++) {
+
             if(searchTerm.equals(movieList.get(i).getTitle())) {
                 System.out.println("Titel:" + movieList.get(i).getTitle());
             }
+
         }
+
     }
 
     //Main laver metodekald til Controller
