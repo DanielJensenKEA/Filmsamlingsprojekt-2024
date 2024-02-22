@@ -40,4 +40,13 @@ public class Movie {
     public String getGenre() {
         return genre;
     }
+   @Override
+    public String toString() {
+        String result = "";
+        result += "Titel:"+title + " " +" Genre:" + genre + " ";
+        if(isInColor=true) {
+            result += " er i farve";
+        }
+        return result;
+    }
 }

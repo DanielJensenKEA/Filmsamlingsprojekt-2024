@@ -9,13 +9,16 @@ public class main {
         Controller o = new Controller();
 
         //Start på While Loop, menu til bruger.
-        final int SENTINEL = 2;
+        final int SENTINEL = 9;
         int loopInput = 1;
+        int i = 0;
 
         while (loopInput != SENTINEL ) {
             System.out.println("Velkommen til din filmsamling.");
-            System.out.println("Tast 1 for at oprette en film");
-            System.out.println("Tast 2 for at afslutte");
+            System.out.println("Tast 1 for at oprette en film.");
+            System.out.println("Tast 2 for at se din samling.");
+            System.out.println("Tast 3 for at foretage en søgning.");
+            System.out.println("Tast 9 for at afslutte.");
             loopInput = input.nextInt();
             input.nextLine();
 
@@ -26,10 +29,9 @@ public class main {
                 System.out.println("Skriv titlen på filmen.");
                 String title = input.nextLine();
 
-
-
                 System.out.println("Skriv navnet på instruktøren.");
                 String director = input.nextLine();
+
                 System.out.println("Skriv årstallet på, hvornår filmen blev udgivet.");
                 int yearCreated = input.nextInt();
                 input.nextLine();
@@ -49,9 +51,21 @@ public class main {
 
 
 
+
                 //Kode er udkommenteret.
                // Movie[] test2 = o.getFilmSamling();
                 //System.out.println(test2[0].getTitle() + "er tilføjet til listen.");
+            }
+            //Se en liste af dine film
+            if(loopInput == 2) {
+                o.seeListOfMovies();
+
+            }
+            if(loopInput == 3) {
+                System.out.println("Indtast venlig en søgning.");
+               String searchTerm =  input.nextLine();
+                o.searchMovie(searchTerm);
+
             }
             else {
                 System.out.println("Du har afsluttet programmet.");
