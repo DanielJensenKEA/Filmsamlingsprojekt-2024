@@ -74,9 +74,5 @@ public class main {
 
 
         }
-
-        //Bruger input til constructor
-
-
     }
 }
