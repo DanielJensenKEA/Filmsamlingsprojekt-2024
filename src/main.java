@@ -13,7 +13,14 @@ public class main {
         int loopInput = 1;
         int i = 0;
 
+        //Hardcode til debug
+        o.addMovie("Adams æbler", "Jonathan B", 2018, true, 193, "Horror" );
+        o.addMovie("Adams æbler 2", "Jonathan B", 2013, true, 193, "Horror" );
+        o.addMovie("Batman", "Jonathan H", 2012, true, 193, "Horror" );
+        //
+
         while (loopInput != SENTINEL ) {
+
             System.out.println("Velkommen til din filmsamling.");
             System.out.println("Tast 1 for at oprette en film.");
             System.out.println("Tast 2 for at se din samling.");
@@ -36,9 +43,14 @@ public class main {
                 int yearCreated = input.nextInt();
                 input.nextLine();
 
-                System.out.println("Skriv, hvorvidt filmen er i farve eller ej. True/False.");
-                boolean isInColor = input.nextBoolean();
-                input.nextLine();
+                //Brugerinput i fht. farve. Kan skrive ja eller nej.
+                System.out.println("Skriv, hvorvidt filmen er i farve eller ej. Ja/Nej.");
+                boolean isInColor = false;
+                String farveValg = input.next().toLowerCase();
+                if (farveValg.equals("ja")) {
+                    isInColor = true;
+                }
+
 
                 System.out.println("Skriv varigheden af filmen i minutter.");
                 int lengthInMinutes = input.nextInt();
@@ -48,6 +60,8 @@ public class main {
                 String genre = input.next();
 
                 o.addMovie(title, director, yearCreated, isInColor, lengthInMinutes, genre);
+
+
 
 
 
@@ -64,10 +78,12 @@ public class main {
             if(loopInput == 3) {
                 System.out.println("Indtast venlig en søgning.");
                String searchTerm =  input.nextLine();
+
                 o.searchMovie(searchTerm);
 
             }
-            else {
+
+            else if (loopInput == 9) { //skod linje af kode
                 System.out.println("Du har afsluttet programmet.");
             }
 

@@ -2,7 +2,7 @@ public class Movie {
     private String title;
     private String director;
     private int yearCreated;
-    private boolean isInColor;
+    private boolean isInColor = false;
     private int lengthInMinutes;
     private String genre;
 
@@ -43,7 +43,7 @@ public class Movie {
    @Override
     public String toString() {
         String result = "";
-        result += "Titel:"+title + " " +"\n Genre:" + genre +"\n Instruktør:"+ director + "\n År:" +yearCreated ;
+        result += "\nTitel:"+title + " " +"\n Genre:" + genre +"\n  Instruktør:"+ director + "\n   År:" +yearCreated+"\n    Længde i minutter: " +lengthInMinutes ;
         if(isInColor) {
             result += "\n Filmen er i farve";
         }
