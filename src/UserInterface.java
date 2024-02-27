@@ -41,8 +41,15 @@ public class UserInterface {
                 String searchTerm =  input.nextLine();
                 o.searchMovie(searchTerm);
             }
+            if (loopInput == 4) {
+                o.displayMovieIndex(); //Oversigt af filmtitler med tilhørende index nr for lettere navigation.
+                System.out.println("Vælg venligst en film, som du ønsker at redigere ved at indtaste filmens index plads i din filmsamling.");
+                int index = input.nextInt();
+                input.nextLine();
+                o.editMovieMenu(index);
+            }
 
-            else if (loopInput == 9) { //skod linje af kode
+            else if (loopInput == 9) {
                 System.out.println("Du har afsluttet programmet.");
             }
         }
@@ -86,6 +93,8 @@ public class UserInterface {
         System.out.println("Tast 1 for at oprette en film.");
         System.out.println("Tast 2 for at se din samling.");
         System.out.println("Tast 3 for at foretage en søgning.");
-        System.out.println("Tast 9 for at afslutte.");
+        System.out.println("Tast 4 for at redigere en film i din samling.");
+        System.out.println("Tast 9 for at afslutte.\n");
+
     }
 }

@@ -5,6 +5,7 @@ public class Movie {
     private boolean isInColor = false;
     private int lengthInMinutes;
     private String genre;
+    MovieCollection f = new MovieCollection();
 
     public Movie(String title, String director, int yearCreated, boolean isInColor, int lengthInMinutes, String genre) {
         this.title = title;
@@ -68,17 +69,14 @@ public class Movie {
     @Override
     public String toString() {
         String result = "";
-        result += "\nTitel:"+title + " " +"\n Genre:" + genre +"\n  Instruktør:"+ director + "\n   År:" +yearCreated+"\n    Længde i minutter: " +lengthInMinutes ;
-        if(isInColor) {
-            result += "\n Filmen er i farve";
+        result += "\nTitel:" + title + " " + "\n Genre:" + genre + "\n  Instruktør:" + director + "\n   År:" + yearCreated + "\n    Længde i minutter: " + lengthInMinutes;
+        if (isInColor) {
+            result += "\n     Filmen er i farve";
+        } else {
+            result += "\n     Filmen er ikke i farve.";
         }
-        else {
-            result += "\n Filmen er ikke i farve.";
-        }
+
         return result;
     }
-
-
-
-
 }
+

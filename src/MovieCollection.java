@@ -24,53 +24,76 @@ public class MovieCollection {
     public void searchMovie(String searchTerm) {
        //For each loop leder gennem arraylist. Returnerer searchingMovies sammen med toString metode.
         for(Movie searchingMovies : movieList) {
-            //Vi kigger på try catch næste uge :) og skal ikke bruge det i dag.
                 if (searchingMovies.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
                     System.out.println(searchingMovies.toString());
                     //System.out.println("Plads: "+movieList.indexOf(searchingMovies)+" "+searchingMovies.getTitle()+"("+ searchingMovies.getYearCreated()+")");
                 }
-                else if(movieList.isEmpty()) {
+                else if(searchingMovies.getTitle().length() > 0) {
                     System.out.println("Ingen film i din samling matchede din søgning.");
                 }
         }
     }
-    public void editMovie(int selection, Movie element ) { //ufærdig og scuffed kode
-        System.out.println("Vælg hvilken film du vil redigere");
-        movieList.indexOf()
-        movieList.set(selection, element);
-
-    }
-
-    public void editMovieMenu() {
-        Scanner input = new Scanner(System.in);
-        String menuChoice;
-        int indexChoice;
-
-        System.out.println("Angiv venligst, hvilket element du ønsker at redigere. Gyldige valg er: titel, director, yearCreated, ");
-        menuChoice = input.next();
-
-        //title, director, yearCreated, isInColor, lengthInMinutes, genre
-        //if-statement afgør, hvad brugeren vil ændre
-
-        if (menuChoice.toLowerCase().equals("title")) {
-
+    public void editMovieAttributes(int index) {
+        if (index < 0 || index >= movieList.size()) { //Hvis der ikke er et Movie objekt på det valgte index
+            System.out.println("Der lader ikke til at være en film i din samling på det indtastede index.");
+            return;
         }
+        Scanner input = new Scanner(System.in);
 
+        Movie valgtFilmIndex = movieList.get(index);
+        System.out.println("Du har valgt "+valgtFilmIndex.getTitle()+"("+valgtFilmIndex.getYearCreated()+")");
+        System.out.println("Hvilke elementer af din film ønsker du at redigere?");
+        System.out.println("1: Titel");
+        System.out.println("2: Instruktør");
+        System.out.println("3: Genre");
+        System.out.println("4: Længde i minutter");
+        System.out.println("5: Farve");
+
+        int choice = input.nextInt();
+        input.nextLine();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Nuværende titel: "+movieList.get(index).getTitle());
+                System.out.print("Nye titel: ");
+                String newTitle = input.nextLine();
+                movieList.get(index).setTitle(newTitle);
+                System.out.println("Ændring gemt!");
+                break;
+            case 2:
+                System.out.println("Nuværende instruktør: "+movieList.get(index).getDirector());
+                System.out.print("Nye instruktør: ");
+                String newDirector = input.nextLine();
+                movieList.get(index).setDirector(newDirector);
+                System.out.println("Ændring gemt!");
+                break;
+            case 3:
+                System.out.println("Nuværende genre: "+movieList.get(index).getGenre());
+                System.out.print("Nye genre: ");
+                String newGenre = input.nextLine();
+                movieList.get(index).setGenre(newGenre);
+                System.out.println("Ændring gemt!");
+                break;
+            case 4:
+                System.out.println("Nuværende længde i minutter: "+movieList.get(index).getLengthInMinutes() +" minutter");
+                System.out.print("Nye længde i minutter: ");
+                int newLength = input.nextInt();
+                input.nextLine();
+                movieList.get(index).setLengthInMinutes(newLength);
+                System.out.println("Ændring gemt!");
+                break;
+            case 5:
+                movieList.get(index).setInColor(false);
+                System.out.println(movieList.get(index).getTitle()+"("+movieList.get(index).getYearCreated()+")"+" er hermed sat til ikke at være i farve.");
+                System.out.println("Skriv ja, hvis "+movieList.get(index).getTitle()+"("+movieList.get(index).getYearCreated()+")"+" er i farve. Skriv nej, hvis filmen ikke er i farve.");
+                String farveValg = input.next().toLowerCase();
+                if (farveValg.equals("ja")) {
+                    movieList.get(index).setInColor(true);
+                }
+                System.out.println("Ændring gemt!");
+                break;
+            default:
+                System.out.println("Ingen ændringer blev gemt. Vælg venligst inden for menuen.");
+        }
     }
-
-
-
-    //Main laver metodekald til Controller
-    /*
-public String seeListOfMovies() {
-    String movieListResult ="";
-    for(Movie movie : movieList) {
-        //System.out.println(movie.toString());
-        movieListResult = movie.getTitle();
-    }
-    return movieListResult;
-}
-
- */
-
 }
