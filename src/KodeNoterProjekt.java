@@ -30,12 +30,24 @@ public class KodeNoterProjekt {
             }
             return result;
         }
-
-
-
-
-
     }
 }
+
+//Metode til at fjerne fra Arraylist
+        System.out.println("Enter X to delete")
+        int id = scan.nextint() //Næste int variabel i scanner bliver valgt
+        (klasse/objekt).fjernFraArrayList(Index eller id);
+
+        private void fjernFraArrayList(int id) { //metode t il at fjerne fra Arraylist.
+            if(employee.getId() == id) { //Hvis employee id matcher scanner input ovenfor
+            employeeList.remove(employee) //så bliver denne fjernet fra Arraylisten "employeeList"
+            }
+
+
+
+
+
+
+
 
  */

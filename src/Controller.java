@@ -15,6 +15,7 @@ public class Controller {
         }
 
     }
+
     public void searchMovie(String searchTerm) {
         movieCollection.searchMovie(searchTerm);
     }

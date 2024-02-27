@@ -40,7 +40,32 @@ public class Movie {
     public String getGenre() {
         return genre;
     }
-   @Override
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setYearCreated(int yearCreated) {
+        this.yearCreated = yearCreated;
+    }
+
+    public void setInColor(boolean inColor) {
+        isInColor = inColor;
+    }
+
+    public void setLengthInMinutes(int lengthInMinutes) {
+        this.lengthInMinutes = lengthInMinutes;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    @Override
     public String toString() {
         String result = "";
         result += "\nTitel:"+title + " " +"\n Genre:" + genre +"\n  Instruktør:"+ director + "\n   År:" +yearCreated+"\n    Længde i minutter: " +lengthInMinutes ;
@@ -52,4 +77,8 @@ public class Movie {
         }
         return result;
     }
+
+
+
+
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MovieCollection {
    // private Movie [] filmSamling;
@@ -18,12 +19,8 @@ public class MovieCollection {
         //Bekræftelse på at det virker.
         System.out.println(movieList.get(movieList.size() -1).getTitle()+" er blevet tilføjet til listen.");
         //Nedenfor er demokode.
-       /*
-        for(Movie movie : movieList) {
-            System.out.println(movie.toString());
-        }
-        */
     }
+
     public void searchMovie(String searchTerm) {
        //For each loop leder gennem arraylist. Returnerer searchingMovies sammen med toString metode.
         for(Movie searchingMovies : movieList) {
@@ -36,8 +33,31 @@ public class MovieCollection {
                     System.out.println("Ingen film i din samling matchede din søgning.");
                 }
         }
+    }
+    public void editMovie(int selection, Movie element ) { //ufærdig og scuffed kode
+        System.out.println("Vælg hvilken film du vil redigere");
+        movieList.indexOf()
+        movieList.set(selection, element);
 
     }
+
+    public void editMovieMenu() {
+        Scanner input = new Scanner(System.in);
+        String menuChoice;
+        int indexChoice;
+
+        System.out.println("Angiv venligst, hvilket element du ønsker at redigere. Gyldige valg er: titel, director, yearCreated, ");
+        menuChoice = input.next();
+
+        //title, director, yearCreated, isInColor, lengthInMinutes, genre
+        //if-statement afgør, hvad brugeren vil ændre
+
+        if (menuChoice.toLowerCase().equals("title")) {
+
+        }
+
+    }
+
 
 
     //Main laver metodekald til Controller
