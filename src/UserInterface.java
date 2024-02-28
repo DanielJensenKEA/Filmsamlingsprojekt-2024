@@ -39,6 +39,7 @@ public class UserInterface {
             if(loopInput == 3) {
                 System.out.println("Indtast venlig en søgning.");
                 String searchTerm =  input.nextLine();
+                //o.searchMovie(searchTerm);
                 o.searchMovie(searchTerm);
             }
             if (loopInput == 4) {

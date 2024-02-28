@@ -13,15 +13,21 @@ public class Controller {
         movieCollection.addMovie(title, director, yearCreated, isInColor, lengthInMinutes, genre);
     }
     public void seeListOfMovies() {
+
         for(Movie movie : movieCollection.movieList) {
             System.out.println(movie.toString());
             System.out.println("      Index:"+movieCollection.movieList.indexOf(movie));
         }
 
+        //movieCollection.seeListOfMovies();
+
     }
 
     public void searchMovie(String searchTerm) {
         movieCollection.searchMovie(searchTerm);
+    }
+    public Movie findMovie(String searchTerm) {
+        return movieCollection.findMovie(searchTerm);
     }
 
     public void editMovieMenu(int index) {

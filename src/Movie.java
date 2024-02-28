@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Movie {
     private String title;
     private String director;
@@ -78,5 +80,15 @@ public class Movie {
 
         return result;
     }
+    /*
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(title, movie.title) &&
+                Objects.equals(director, movie.director);
+    }
+     */
 }
 

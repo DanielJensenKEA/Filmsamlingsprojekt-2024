@@ -20,19 +20,48 @@ public class MovieCollection {
         System.out.println(movieList.get(movieList.size() -1).getTitle()+" er blevet tilføjet til listen.");
         //Nedenfor er demokode.
     }
+    public void seeListOfMovies() {
+        for(Movie movie : movieList) {
+            System.out.println(movie.toString());
+            System.out.println("      Index:"+movieList.indexOf(movie));
+        }
+    }
 
+
+
+   //Refaktorering af kode til unittesting. Fjerner void og ændrer til Movie
     public void searchMovie(String searchTerm) {
        //For each loop leder gennem arraylist. Returnerer searchingMovies sammen med toString metode.
+        boolean found = false;
         for(Movie searchingMovies : movieList) {
                 if (searchingMovies.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
                     System.out.println(searchingMovies.toString());
+                    found = true;
                     //System.out.println("Plads: "+movieList.indexOf(searchingMovies)+" "+searchingMovies.getTitle()+"("+ searchingMovies.getYearCreated()+")");
                 }
+                /* //Kode erstattes med boolean variabel found, således at der kun sker en fejlbesked, og ikke hver gang for each loop itereres.
                 else if(searchingMovies.getTitle().length() > 0) {
                     System.out.println("Ingen film i din samling matchede din søgning.");
                 }
+
+                 */
+
+        }
+        if(!found) { //Hvis boolean variabel er false returneres nedenstående printline.
+            System.out.println("Ingen film i din samling matchede din søgning.");
         }
     }
+    //Nedenstående kode bruges til unit testing.
+    public Movie findMovie(String searchTerm) {
+        for(Movie movie : movieList) {
+            if(movie.getTitle().toLowerCase().equals(searchTerm.toLowerCase())) {
+                return movie;
+            }
+        }
+        return null;
+    }
+
+
     public void editMovieAttributes(int index) {
         if (index < 0 || index >= movieList.size()) { //Hvis der ikke er et Movie objekt på det valgte index
             System.out.println("Der lader ikke til at være en film i din samling på det indtastede index.");
