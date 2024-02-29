@@ -48,7 +48,7 @@ public class MovieCollection {
 
         }
         if (!found) { //Hvis boolean variabel er false returneres nedenstående printline.
-            System.out.println("Ingen film i din samling matchede din søgning.");
+            System.out.println("\nIngen film i din samling matchede din søgning.");
         }
     }
 
@@ -73,8 +73,29 @@ public class MovieCollection {
     }
 
     public void movieDeletion(int index) { //User Story 11 - fjerne film fra listen.
-        //Kæmpe problem her, eftersom programmet crasher selv med try-catch, hvis der indtastes et index, hvor der ikke
-        //er lagret en film.
+        Scanner input = new Scanner(System.in);
+        try {
+            if (index < 0 || index >= movieList.size()) {
+                System.out.println("Ugyldigt index valg. Vælg venligst inden for de oplyste værdier.");
+            }
+            Movie valgtFilmIndex = movieList.get(index);
+
+            System.out.println("Du har valgt " + valgtFilmIndex.getTitle() + " og ønsker at slette denne.");
+            System.out.println("Ønsker du at fortsætte? Tast Ja for at fortsætte, nej for at afslutte. Dit valg kan ikke fortrydes.");
+            String gaffelValg = input.nextLine().toLowerCase();
+
+            if (gaffelValg.equals("ja")) {
+                System.out.println("Film slettet: "+valgtFilmIndex.getTitle());
+                movieList.remove(index);
+            } else {
+                System.out.println("Ingen film slettes. Du sendes tilbage til menuen.");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Der skete en fejl. "+e.getMessage());
+        }
+    }
+    public void movieDeletionUNITTESTING(int index) { //User Story 11 - fjerne film fra listen.
         Scanner input = new Scanner(System.in);
         try {
             if (index < 0 || index >= movieList.size()) {
@@ -84,24 +105,25 @@ public class MovieCollection {
 
             System.out.println("Du har valgt " + valgtFilmIndex.getTitle() + " og ønsker at slette denne.");
             System.out.println("Ønsker du at fortsætte? Tast Ja for at fortsætte, nej for at afslutte.");
-            String gaffelValg = "";
 
-            if (gaffelValg.toLowerCase().equals("ja")) {
+            movieList.remove(index);
+            //Nedenstående er udkommenteret, så unit testing af metoden kan ske, eftersom du ikke kan skrive i konsol ved unittesting.
+            /*
+            String gaffelValg = input.nextLine().toLowerCase();
+
+            if (gaffelValg.equals("ja")) {
                 movieList.remove(index);
                 System.out.println("Film slettet.");
             } else {
                 System.out.println("Ingen film slettes. Du sendes tilbage til menuen.");
             }
         }
+             */
+        }
         catch (Exception e) {
             System.out.println("Der skete en fejl.");
         }
-        finally {
-            input.close();
-        }
     }
-
-
     public void editMovieAttributes(int index) {
         Scanner input = new Scanner(System.in);
         try {

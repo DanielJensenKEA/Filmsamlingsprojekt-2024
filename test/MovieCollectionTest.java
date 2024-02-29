@@ -100,7 +100,7 @@ class MovieCollectionTest {
     }
 
     @Test
-    void movieDeletion() {
+    void movieDeletion() { //Unit testing af movieDeletion. User Story #11.
         //Arrange
         MovieCollection movc = new MovieCollection();
         Controller controller = new Controller();
@@ -108,13 +108,16 @@ class MovieCollectionTest {
         Movie movie1 = new Movie("Adams Æbler 2", "Jonathan B", 1998, true, 193, "horror");
         movc.movieList.add(movie);
         movc.movieList.add(movie1);
+        //Vi tilføjer to film to movieList.
 
         //Act
-        int actualSize = movc.movieList.size();
-        movc.movieDeletion(0);
+        int initialSize = movc.movieList.size(); //Movielists størrelse er 2.
+        movc.movieDeletionUNITTESTING(1); //Vi laver delete movie metodekald på index 1. Vi fjerner movie1.
+        int finalSize = movc.movieList.size(); //Movielists størrelse efter deletion oplagres i finalSize variabel.
+
 
         //Assert
-        int expectedResult = 1;
-        Assertions.assertEquals(expectedResult, actualSize);
+        int expectedResult = initialSize-1; //Vores expected result er vores oprindelige størrelse på 2, minus 1.
+        Assertions.assertEquals(expectedResult, finalSize);
     }
 }

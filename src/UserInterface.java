@@ -55,7 +55,6 @@ public class UserInterface {
                         int index = input.nextInt();
                         input.nextLine();
                         o.movieDeletion(index);
-                        //Metodekald til slettefunktion
                     }
                     /*
                     if (loopInput == 5) { //Test input af søgefunktion af arrayliste fra 29/2/2024. Virker ikke. Returnerer ikke noget.
@@ -109,7 +108,7 @@ public class UserInterface {
     }
 
     public void menuVelkomst() {
-        System.out.println("Velkommen til din filmsamling.");
+        System.out.println("\nVelkommen til din filmsamling.");
         System.out.println("Tast 1 for at oprette en film.");
         System.out.println("Tast 2 for at se din samling.");
         System.out.println("Tast 3 for at foretage en søgning.");
