@@ -19,10 +19,10 @@ public class UserInterface {
         o.addMovie("Adams æbler", "Jonathan B", 2018, true, 193, "Horror");
         o.addMovie("Adams æbler 2", "Jonathan B", 2013, true, 193, "Horror");
         o.addMovie("Batman", "Jonathan H", 2012, true, 193, "Horror");
-        //
+
         while (loopInput != SENTINEL) {
             try {
-                while (loopInput != SENTINEL) {
+                //while (loopInput != SENTINEL) {
                     //Der printes en menu ud til brugeren, således de kan navigere i programmet.
                     menuVelkomst(); //Menu med navigationspunkter
                     loopInput = input.nextInt();
@@ -31,9 +31,6 @@ public class UserInterface {
                     if (loopInput == 1) { //Primære blok af kode til at tilføje nye film til samling.
                         addMovieMethod(); //Metodekald til at oprette film.
 
-                        //Kode er udkommenteret.
-                        // Movie[] test2 = o.getFilmSamling();
-                        //System.out.println(test2[0].getTitle() + "er tilføjet til listen.");
                     }
                     //Se en liste af dine film
                     if (loopInput == 2) {
@@ -52,6 +49,15 @@ public class UserInterface {
                         input.nextLine();
                         o.editMovieMenu(index);
                     }
+                    if (loopInput == 5) {
+                        o.displayMovieIndex();
+                        System.out.print("Filmsletning på index: ");
+                        int index = input.nextInt();
+                        input.nextLine();
+                        o.movieDeletion(index);
+                        //Metodekald til slettefunktion
+                    }
+                    /*
                     if (loopInput == 5) { //Test input af søgefunktion af arrayliste fra 29/2/2024. Virker ikke. Returnerer ikke noget.
                         System.out.println("Indtast din søgning");
                         String searchTerm = input.nextLine();
@@ -61,9 +67,10 @@ public class UserInterface {
                     } else if (loopInput == 9) {
                         System.out.println("Du har afsluttet programmet.");
                     }
-                }
+                     */
             } catch (Exception e) {
                 System.out.println("Der skete en fejl. Du er blevet sendt tilbage til menuen.");
+                input.nextLine();
             }
         }
     }
@@ -107,6 +114,7 @@ public class UserInterface {
         System.out.println("Tast 2 for at se din samling.");
         System.out.println("Tast 3 for at foretage en søgning.");
         System.out.println("Tast 4 for at redigere en film i din samling.");
+        System.out.println("Tast 5 for at slette en film i din samling.");
         System.out.println("Tast 9 for at afslutte.\n");
 
     }

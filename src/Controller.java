@@ -44,6 +44,9 @@ public class Controller {
             System.out.println(movie.getTitle()+"("+"Index: "+movieCollection.movieList.indexOf(movie)+")");
         }
     }
+    public void movieDeletion(int index) {
+        movieCollection.movieDeletion(index);
+    }
 
 
 }
