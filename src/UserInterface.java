@@ -1,12 +1,14 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
+    Controller o = new Controller();
 
     public void startProgram() {
         Scanner input = new Scanner(System.in);
         //Vi kommenterer Moviecollection ud og tilføjer vores controller klasse.
         //MovieCollection o = new MovieCollection();
-        Controller o = new Controller();
+       // Controller o = new Controller();
 
         //Start på While Loop, menu til bruger.
         final int SENTINEL = 9;
@@ -14,51 +16,61 @@ public class UserInterface {
         int i = 0;
 
         //Hardcode til debug
-        o.addMovie("Adams æbler", "Jonathan B", 2018, true, 193, "Horror" );
-        o.addMovie("Adams æbler 2", "Jonathan B", 2013, true, 193, "Horror" );
-        o.addMovie("Batman", "Jonathan H", 2012, true, 193, "Horror" );
+        o.addMovie("Adams æbler", "Jonathan B", 2018, true, 193, "Horror");
+        o.addMovie("Adams æbler 2", "Jonathan B", 2013, true, 193, "Horror");
+        o.addMovie("Batman", "Jonathan H", 2012, true, 193, "Horror");
         //
+        while (loopInput != SENTINEL) {
+            try {
+                while (loopInput != SENTINEL) {
+                    //Der printes en menu ud til brugeren, således de kan navigere i programmet.
+                    menuVelkomst(); //Menu med navigationspunkter
+                    loopInput = input.nextInt();
+                    input.nextLine();
 
-        while (loopInput != SENTINEL ) {
-            //Der printes en menu ud til brugeren, således de kan navigere i programmet.
-            menuVelkomst(); //Menu med navigationspunkter
-            loopInput = input.nextInt();
-            input.nextLine();
+                    if (loopInput == 1) { //Primære blok af kode til at tilføje nye film til samling.
+                        addMovieMethod(); //Metodekald til at oprette film.
 
-            if(loopInput == 1) { //Primære blok af kode til at tilføje nye film til samling.
-                addMovieMethod(); //Metodekald til at oprette film.
+                        //Kode er udkommenteret.
+                        // Movie[] test2 = o.getFilmSamling();
+                        //System.out.println(test2[0].getTitle() + "er tilføjet til listen.");
+                    }
+                    //Se en liste af dine film
+                    if (loopInput == 2) {
+                        o.seeListOfMovies();
+                    }
+                    if (loopInput == 3) {
+                        System.out.println("Indtast venlig en søgning.");
+                        String searchTerm = input.nextLine();
+                        //o.searchMovie(searchTerm);
+                        o.searchMovie(searchTerm);
+                    }
+                    if (loopInput == 4) {
+                        o.displayMovieIndex(); //Oversigt af filmtitler med tilhørende index nr for lettere navigation.
+                        System.out.println("Vælg venligst en film, som du ønsker at redigere ved at indtaste filmens index plads i din filmsamling.");
+                        int index = input.nextInt();
+                        input.nextLine();
+                        o.editMovieMenu(index);
+                    }
+                    if (loopInput == 5) { //Test input af søgefunktion af arrayliste fra 29/2/2024. Virker ikke. Returnerer ikke noget.
+                        System.out.println("Indtast din søgning");
+                        String searchTerm = input.nextLine();
+                        input.nextLine();
+                        o.searchMovieArraylist(searchTerm);
 
-                //Kode er udkommenteret.
-                // Movie[] test2 = o.getFilmSamling();
-                //System.out.println(test2[0].getTitle() + "er tilføjet til listen.");
-            }
-            //Se en liste af dine film
-            if(loopInput == 2) {
-                o.seeListOfMovies();
-            }
-            if(loopInput == 3) {
-                System.out.println("Indtast venlig en søgning.");
-                String searchTerm =  input.nextLine();
-                //o.searchMovie(searchTerm);
-                o.searchMovie(searchTerm);
-            }
-            if (loopInput == 4) {
-                o.displayMovieIndex(); //Oversigt af filmtitler med tilhørende index nr for lettere navigation.
-                System.out.println("Vælg venligst en film, som du ønsker at redigere ved at indtaste filmens index plads i din filmsamling.");
-                int index = input.nextInt();
-                input.nextLine();
-                o.editMovieMenu(index);
-            }
-
-            else if (loopInput == 9) {
-                System.out.println("Du har afsluttet programmet.");
+                    } else if (loopInput == 9) {
+                        System.out.println("Du har afsluttet programmet.");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Der skete en fejl. Du er blevet sendt tilbage til menuen.");
             }
         }
     }
     public void addMovieMethod() {
         //I nedenstående kode er der indsat input.nextLine efter hver int eller boolean variabel i et
         // forsøg på at redde programmet fra Scanner bug.
-        Controller o = new Controller();
+        //Controller o = new Controller();
         Scanner input = new Scanner(System.in);
 
         System.out.println("Skriv titlen på filmen.");

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Controller {
     MovieCollection movieCollection;
@@ -32,6 +32,9 @@ public class Controller {
 
     public void editMovieMenu(int index) {
         movieCollection.editMovieAttributes(index);
+    }
+    public ArrayList<Movie> searchMovieArraylist(String searchTerm) {
+        return movieCollection.searchMovieArray(searchTerm);
     }
 
 

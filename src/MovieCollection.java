@@ -29,7 +29,7 @@ public class MovieCollection {
 
 
 
-   //Refaktorering af kode til unittesting. Fjerner void og ændrer til Movie
+   //searchMovie() bruges til det egentlige program. Der benyttes boolean således, at der kun sker en sysout af ingen film fundet.
     public void searchMovie(String searchTerm) {
        //For each loop leder gennem arraylist. Returnerer searchingMovies sammen med toString metode.
         boolean found = false;
@@ -51,7 +51,7 @@ public class MovieCollection {
             System.out.println("Ingen film i din samling matchede din søgning.");
         }
     }
-    //Nedenstående kode bruges til unit testing.
+    //Nedenstående kode bruges til unit testing. Kode er more or less kopieret fra unittesting opgaven fra 28. feb 2024.
     public Movie findMovie(String searchTerm) {
         for(Movie movie : movieList) {
             if(movie.getTitle().toLowerCase().equals(searchTerm.toLowerCase())) {
@@ -59,6 +59,15 @@ public class MovieCollection {
             }
         }
         return null;
+    }
+    public ArrayList <Movie> searchMovieArray(String searchTerm) {
+        ArrayList <Movie> resultArrayList = new ArrayList<>();
+        for ( Movie movie : movieList) {
+            if(movie.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
+                resultArrayList.add(movie);
+            }
+        }
+        return resultArrayList;
     }
 
 
@@ -77,6 +86,7 @@ public class MovieCollection {
         System.out.println("3: Genre");
         System.out.println("4: Længde i minutter");
         System.out.println("5: Farve");
+        System.out.println("6. Udgivelsesår");
 
         int choice = input.nextInt();
         input.nextLine();
@@ -119,6 +129,14 @@ public class MovieCollection {
                 if (farveValg.equals("ja")) {
                     movieList.get(index).setInColor(true);
                 }
+                System.out.println("Ændring gemt!");
+                break;
+            case 6:
+                System.out.println("Nuværende udgivelsesår: "+movieList.get(index).getYearCreated());
+                System.out.println("Nye udgivelsesår: ");
+                int newYear = input.nextInt();
+                input.nextLine();
+                movieList.get(index).setYearCreated(newYear);
                 System.out.println("Ændring gemt!");
                 break;
             default:
