@@ -13,23 +13,27 @@ public class MovieCollection {
         movieList = new ArrayList<>();
     }
 
-
+    //Vores metode til at tilføje filmobjekter til vores arrayliste movieList.
+    //En lille sysout besked til brugeren.
     public void addMovie(String title, String director, int yearCreated, boolean isInColor, int lengthInMinutes, String genre) {
         movieList.add(new Movie(title, director, yearCreated, isInColor, lengthInMinutes, genre));
-        //Bekræftelse på at det virker.
+        //Vi printer en besked til brugeren, at filmobjektet er tilføjet til listen.
         System.out.println(movieList.get(movieList.size() - 1).getTitle() + " er blevet tilføjet til listen.");
-        //Nedenfor er demokode.
     }
 
     public void seeListOfMovies() {
+        //For loop, som itererer gennem movieList og returnerer hver lagrede film med concatenation af vores toString metode.
         for (Movie movie : movieList) {
             System.out.println(movie.toString());
+            //Lidt homebrew, så bruger kan se filmenes indexplads, når de ser listen. Optræder til sidst i filmens attributter. Mellemrum i sysout er designvalg for at gøre det lettere overskueligt.
+            //Samme indrykning er endvidere foretaget i toString metoden, så det ser lidt pænere ud.
             System.out.println("      Index:" + movieList.indexOf(movie));
         }
     }
 
 
     //searchMovie() bruges til det egentlige program. Der benyttes boolean således, at der kun sker en sysout af ingen film fundet.
+    //Forhindre, at der sker sysout fejlbesked for hver iteration, hvor der ikke returneres et resultat i overensstemmelse med søgekriteriet.
     public void searchMovie(String searchTerm) {
         //For each loop leder gennem arraylist. Returnerer searchingMovies sammen med toString metode.
         boolean found = false;
@@ -37,20 +41,13 @@ public class MovieCollection {
             if (searchingMovies.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
                 System.out.println(searchingMovies.toString());
                 found = true;
-                //System.out.println("Plads: "+movieList.indexOf(searchingMovies)+" "+searchingMovies.getTitle()+"("+ searchingMovies.getYearCreated()+")");
             }
-                /* //Kode erstattes med boolean variabel found, således at der kun sker en fejlbesked, og ikke hver gang for each loop itereres.
-                else if(searchingMovies.getTitle().length() > 0) {
-                    System.out.println("Ingen film i din samling matchede din søgning.");
-                }
-
-                 */
-
         }
         if (!found) { //Hvis boolean variabel er false returneres nedenstående printline.
             System.out.println("\nIngen film i din samling matchede din søgning.");
         }
     }
+
 
     //Nedenstående kode bruges til unit testing. Kode er more or less kopieret fra unittesting opgaven fra 28. feb 2024.
     public Movie findMovie(String searchTerm) {
@@ -62,6 +59,10 @@ public class MovieCollection {
         return null;
     }
 
+    //Nedenstående metode searchMovieArray lykkedes ikke i, at returnere en arrayliste til brugeren. Den returnerer faktisk ikke noget.
+    //Metoden er konstrueret med hjælp fra underviser den 29. februar 2024. Der blev ikke nået at få oplysning om, hvorfor den ikke returnerede.
+    //Metoden antages at være skrevet korrekt, men eftersom den ikke fungerer efter hensigt er den ikke taget i brug af programmet.
+    //I stedet benyttes metoden searchMovie() i forbindelse med programmets søgefunktion.
     public ArrayList<Movie> searchMovieArray(String searchTerm) {
         ArrayList<Movie> resultArrayList = new ArrayList<>();
         for (Movie movie : movieList) {
@@ -75,27 +76,29 @@ public class MovieCollection {
     public void movieDeletion(int index) { //User Story 11 - fjerne film fra listen.
         Scanner input = new Scanner(System.in);
         try {
-            if (index < 0 || index >= movieList.size()) {
+            if (index < 0 || index >= movieList.size()) { //Hvis der vælges et index mindre end 0 eller højere end movieLists størrelse sker der en sysout besked.
                 System.out.println("Ugyldigt index valg. Vælg venligst inden for de oplyste værdier.");
             }
-            Movie valgtFilmIndex = movieList.get(index);
+            Movie valgtFilmIndex = movieList.get(index); //Vi gemmer indtastede indexværdi som valgtFilmIndex. Det gør vi for en lettere tilgang til sysout beskeder for brugervenlighed.
 
             System.out.println("Du har valgt " + valgtFilmIndex.getTitle() + " og ønsker at slette denne.");
             System.out.println("Ønsker du at fortsætte? Tast Ja for at fortsætte, nej for at afslutte. Dit valg kan ikke fortrydes.");
             String gaffelValg = input.nextLine().toLowerCase();
 
-            if (gaffelValg.equals("ja")) {
+            //Vi vil gerne have, at brugere bekræfter deres valg om at slette en film, eftersom det sandsynligvis ikke er muligt at
+            //hente et slettet movie objekt efter sletning.
+            if (gaffelValg.equals("ja")) { //Hvis bruger skriver ja, er valget bekræftet.
                 System.out.println("Film slettet: "+valgtFilmIndex.getTitle());
                 movieList.remove(index);
-            } else {
+            } else { //Hvis input ikke er ja, er der ingen grund til at foretage nogle ændringer. Bruger sendes tilbage.
                 System.out.println("Ingen film slettes. Du sendes tilbage til menuen.");
             }
         }
-        catch (Exception e) {
+        catch (Exception e) { //Vi laver Exception e for at fange flest mulige exceptions, så programmet ikke crasher i overensstemmelse med user stories.
             System.out.println("Der skete en fejl. "+e.getMessage());
         }
     }
-    public void movieDeletionUNITTESTING(int index) { //User Story 11 - fjerne film fra listen.
+    public void movieDeletionUNITTESTING(int index) { //User Story 11 - fjerne film fra listen. UNITTESTING KUN. Se forklaring i kommentar nedenfor.
         Scanner input = new Scanner(System.in);
         try {
             if (index < 0 || index >= movieList.size()) {
@@ -131,7 +134,7 @@ public class MovieCollection {
                 System.out.println("Der lader ikke til at være en film i din samling på det indtastede index.");
                 return;
             }
-            Movie valgtFilmIndex = movieList.get(index);
+            Movie valgtFilmIndex = movieList.get(index); //Vi gemmer indtastede index som valgtFilmIndex for sysout brugervenlighed.
             System.out.println("Du har valgt " + valgtFilmIndex.getTitle() + "(" + valgtFilmIndex.getYearCreated() + ")");
             System.out.println("Hvilke elementer af din film ønsker du at redigere?");
             System.out.println("1: Titel");
@@ -141,14 +144,22 @@ public class MovieCollection {
             System.out.println("5: Farve");
             System.out.println("6. Udgivelsesår");
 
-           int choice = input.nextInt(); //Vi udkommenterer for nedenstående if sætning.
+           int choice = input.nextInt();
            input.nextLine();
 
             switch (choice) {
+                //Der er blevet brugt switch-case her, egentlig fordi det var et IntelliJ forslag. Tænkte det var ok, når nu
+                //vi brugte if-sætninger i vores startProgram. If-sætninger kunne tillige løse opgaven i nærværende metode
+                //men tænkte, at det kunne være en fordel at bruge begge måder at håndtere menunavigation i et akademisk henseende :)
+                //på forhånd undskyld, Edith.
                 case 1:
+                    //I hver case har vi et display af Nuværende titel osv. for brugervenlighed. Vi vil gerne sikre os, at
+                    //brugeren ved, hvad der er programmets nærværende fokus.
                     System.out.println("Nuværende titel: " + movieList.get(index).getTitle());
                     System.out.print("Nye titel: ");
                     String newTitle = input.nextLine();
+                    //Her bruger vi vores settermetode til at sætte den nye titel, der er indtastede af brugeren til String newTitle.
+                    //I de øvrige cases sker samme fremgangsmåde ved at redigere i et eksisterende movieobjekt ved hjælp af settermetoder.
                     movieList.get(index).setTitle(newTitle);
                     System.out.println("Ændring gemt!");
                     break;
@@ -175,7 +186,13 @@ public class MovieCollection {
                     System.out.println("Ændring gemt!");
                     break;
                 case 5:
-                    movieList.get(index).setInColor(false);
+                    //Lidt ekstra brugervenlighed i denne case. Boolean var lidt besværligt at forestille sig, at håndtere
+                    //på denne måde.
+                    movieList.get(index).setInColor(false); //Vi starter blot med at sætte inColor til false. Der er en
+                    //vis antagelse(lidt farligt måske :) ) om, at brugeren ved, hvad de vil foretage sig her.
+                    //Hvis brugeren ved, at filmen skal sættes i farve vil de skrive ja, hvorved inColor sættes til true.
+                    //Såfremt brugeren ikke skriver noget eller ikke ønsker at redigere alligevel vil filmen sættes til false.
+                    //En vis svaghed i denne del af programmet. Kan bruge videre arbejde for at maksimere potentialet.
                     System.out.println(movieList.get(index).getTitle() + "(" + movieList.get(index).getYearCreated() + ")" + " er hermed sat til ikke at være i farve.");
                     System.out.println("Skriv ja, hvis " + movieList.get(index).getTitle() + "(" + movieList.get(index).getYearCreated() + ")" + " er i farve. Skriv nej, hvis filmen ikke er i farve.");
                     String farveValg = input.next().toLowerCase();
@@ -199,7 +216,8 @@ public class MovieCollection {
         catch(Exception e)  {
             System.out.println("Der skete en fejl, prøv venligst igen.");
             input.nextLine();
-
+            //Nedenstående linjer er indsat, eftersom der var nogle problemer med et infinite loop.
+            //Lidt internet hjælp er benyttet her.
             input.next();
 
             System.out.println("Tryk enter for at fortsætte.");

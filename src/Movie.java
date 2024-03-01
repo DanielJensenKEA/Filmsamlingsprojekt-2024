@@ -1,6 +1,8 @@
 import java.util.Objects;
 
 public class Movie {
+    //Private attributter i overensstemmelse med encapsulation principle. Hvis vi vil have fat på nedenstående værdier
+    //så skal vi bruge vores getter-metoder.
     private String title;
     private String director;
     private int yearCreated;
@@ -68,6 +70,8 @@ public class Movie {
         this.genre = genre;
     }
 
+    //Vores toString metode som gennemgået i undervisning.
+    //Der bliver ikke brugt getter-metoder her, eftersom attributterne er i samme klasse som toString metoden.
     @Override
     public String toString() {
         String result = "";
@@ -80,15 +84,5 @@ public class Movie {
 
         return result;
     }
-    /*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Movie movie = (Movie) o;
-        return Objects.equals(title, movie.title) &&
-                Objects.equals(director, movie.director);
-    }
-     */
 }
 
